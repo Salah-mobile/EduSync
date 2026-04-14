@@ -13,3 +13,8 @@ CREATE TABLE users(
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES roles(id)
 );
+CREATE TABLE classes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(225),
+    classroom_number INT 
+);
