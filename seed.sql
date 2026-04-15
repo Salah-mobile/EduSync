@@ -151,3 +151,10 @@ VALUES (
         35,
         3
     );
+
+INSERT INTO enrollments (enrolled_at, status, student_id, course_id)
+VALUES
+(NOW(), "active", 2, 1),
+(NOW(), "active", 3, 2),
+(NOW(), "pending", 4, 3),
+(NOW(), "active", 1, 1);
