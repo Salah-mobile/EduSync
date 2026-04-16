@@ -194,3 +194,11 @@ from courses c
 SELECT COUNT(course_id) as numberS, c.title from enrollments e
 JOIN courses c on c.id=e.course_id
  GROUP BY e.course_id
+
+SELECT CONCAT(u.`firstName`,' ',u.`lastName`)
+from students s
+JOIN users u on u.id=s.user_id
+LEFT JOIN enrollments e
+on s.id=e.student_id
+GROUP BY e.course_id
+HAVING COUNT(e.course_id)=0
