@@ -167,3 +167,8 @@ JOIN users u on u.id=s.user_id
 
 SELECT CONCAT(u.`firstName`,' ',u.`lastName`) as fullName ,r.label as Role FROM users u
 JOIN roles r on r.id=u.role_id
+
+SELECT CONCAT(u.`firstName`,' ',u.`lastName`) as fullName , c.title as Title , c.description as Description , r.label as role
+from courses c 
+JOIN users u on c.user_id=u.id
+JOIN roles r  on r.id=u.role_id
