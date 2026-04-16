@@ -163,3 +163,7 @@ SELECT CONCAT(u.`firstName`,' ',u.`lastName`) , s.student_number , s.dateofbirth
 FROM students s
 JOIN classes c on c.id=s.classe_id
 JOIN users u on u.id=s.user_id
+
+
+SELECT CONCAT(u.`firstName`,' ',u.`lastName`) as fullName ,r.label as Role FROM users u
+JOIN roles r on r.id=u.role_id
