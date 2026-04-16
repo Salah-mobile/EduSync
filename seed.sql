@@ -113,7 +113,6 @@ VALUES (
         "hicham_789",
         2
     );
-
 INSERT INTO
     courses (
         title,
@@ -158,3 +157,9 @@ VALUES
 (NOW(), "active", 3, 2),
 (NOW(), "pending", 4, 3),
 (NOW(), "active", 1, 1);
+
+
+SELECT CONCAT(u.`firstName`,' ',u.`lastName`) , s.student_number , s.dateofbirth , c.name,c.classroom_number
+FROM students s
+JOIN classes c on c.id=s.classe_id
+JOIN users u on u.id=s.user_id
