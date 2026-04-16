@@ -113,6 +113,7 @@ VALUES (
         "hicham_789",
         2
     );
+
 INSERT INTO
     courses (
         title,
@@ -151,24 +152,45 @@ VALUES (
         3
     );
 
-INSERT INTO enrollments (enrolled_at, status, student_id, course_id)
-VALUES
-(NOW(), "active", 2, 1),
-(NOW(), "active", 3, 2),
-(NOW(), "pending", 4, 3),
-(NOW(), "active", 1, 1);
+INSERT INTO
+    enrollments (
+        enrolled_at,
+        status,
+        student_id,
+        course_id
+    )
+VALUES (NOW(), "active", 2, 1),
+    (NOW(), "active", 3, 2),
+    (NOW(), "pending", 4, 3),
+    (NOW(), "active", 1, 1);
 
+SELECT CONCAT(
+        u.`firstName`, ' ', u.`lastName`
+    ), s.student_number, s.dateofbirth, c.name, c.classroom_number
+FROM
+    students s
+    JOIN classes c on c.id = s.classe_id
+    JOIN users u on u.id = s.user_id
 
-SELECT CONCAT(u.`firstName`,' ',u.`lastName`) , s.student_number , s.dateofbirth , c.name,c.classroom_number
-FROM students s
-JOIN classes c on c.id=s.classe_id
-JOIN users u on u.id=s.user_id
+SELECT CONCAT(
+        u.`firstName`, ' ', u.`lastName`
+    ) as fullName, r.label as Role
+FROM users u
+    JOIN roles r on r.id = u.role_id
 
+SELECT
+    CONCAT(
+        u.`firstName`,
+        ' ',
+        u.`lastName`
+    ) as fullName,
+    c.title as Title,
+    c.description as Description,
+    r.label as role
+from courses c
+    JOIN users u on c.user_id = u.id
+    JOIN roles r on r.id = u.role_id
 
-SELECT CONCAT(u.`firstName`,' ',u.`lastName`) as fullName ,r.label as Role FROM users u
-JOIN roles r on r.id=u.role_id
-
-SELECT CONCAT(u.`firstName`,' ',u.`lastName`) as fullName , c.title as Title , c.description as Description , r.label as role
-from courses c 
-JOIN users u on c.user_id=u.id
-JOIN roles r  on r.id=u.role_id
+SELECT COUNT(course_id) as numberS, c.title from enrollments e
+JOIN courses c on c.id=e.course_id
+ GROUP BY e.course_id
